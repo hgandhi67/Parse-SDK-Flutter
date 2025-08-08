@@ -83,6 +83,7 @@ class CoreStoreSembastImp implements CoreStore {
 
   @override
   Future<List<String>?> getStringList(String key) async {
+    if (UniversalPlatform.isMacOS) return null;
     final List<String>? storedItem = await get(key);
     return storedItem;
   }
