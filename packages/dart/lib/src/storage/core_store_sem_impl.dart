@@ -15,8 +15,7 @@ class CoreStoreSembastImp implements CoreStore {
         if (parseIsWeb) {
           print(
               '***********************************************************************************************************');
-          print(
-              'Warning: CoreStoreSembastImp of the Parse_Server_SDK does not encrypt the database on WEB.');
+          print('Warning: CoreStoreSembastImp of the Parse_Server_SDK does not encrypt the database on WEB.');
           print(
               '***********************************************************************************************************');
         }
@@ -32,8 +31,7 @@ class CoreStoreSembastImp implements CoreStore {
       }());
       final Database db = await factory.openDatabase(dbPath,
           codec: !parseIsWeb ? getXXTeaSembastCodec(password: password) : null);
-      _instance =
-          CoreStoreSembastImp._internal(db, StoreRef<String, String>.main());
+      _instance = CoreStoreSembastImp._internal(db, StoreRef<String, String>.main());
     }
 
     return _instance!;
