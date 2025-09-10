@@ -597,7 +597,7 @@ class QueryBuilder<T extends ParseObject> {
     ParseResponse parseResponse =
         await (QueryBuilder.copy(this)..setLimit(1)).query();
     if (parseResponse.success) {
-      return this.fromJson((parseResponse.results?.first as T?).toJson(full: true));
+      return T().fromJson((parseResponse.results?.first as T?).toJson(full: true));
     }
     throw parseResponse.error ?? ParseError();
   }
@@ -607,7 +607,7 @@ class QueryBuilder<T extends ParseObject> {
   Future<List<T>> find() async {
     ParseResponse parseResponse = await query();
     if (parseResponse.success) {
-      return parseResponse.results?.map((e) => this.fromJson(e.toJson(full: true).toList() ?? <T>[];
+      return parseResponse.results?.map((e) => T().fromJson(e.toJson(full: true).toList() ?? <T>[];
     }
     throw parseResponse.error ?? ParseError();
   }
