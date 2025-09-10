@@ -597,7 +597,7 @@ class QueryBuilder<T extends ParseObject> {
     ParseResponse parseResponse =
         await (QueryBuilder.copy(this)..setLimit(1)).query();
     if (parseResponse.success) {
-      return parseResponse.results?.first;
+      return parseResponse.results?.first as T?;
     }
     throw parseResponse.error ?? ParseError();
   }
