@@ -593,18 +593,18 @@ class QueryBuilder<T extends ParseObject> {
 
   /// Find the first object that satisfies the query.
   /// Returns null, if no object is found.
-  Future<T?> first() async {
+  Future<T?> first<T extends ParseObject>() async {
     ParseResponse parseResponse =
         await (QueryBuilder.copy(this)..setLimit(1)).query();
     if (parseResponse.success) {
-      return parseResponse.results?.first;
+      return parseResponse.results?.first as T?;
     }
     throw parseResponse.error ?? ParseError();
   }
 
   /// Find the objects that satisfy the query.
   /// Returns an empty list if no objects are found.
-  Future<List<T>> find() async {
+  Future<List<T>> find<T extends ParseObject>() async {
     ParseResponse parseResponse = await query();
     if (parseResponse.success) {
       return parseResponse.results?.map((e) => e as T).toList() ?? <T>[];
